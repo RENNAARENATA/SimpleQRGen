@@ -14,7 +14,7 @@ args = parser.parse_args()
 def createQR(string):
     qr = make(string)
     if('http' not in string):
-        qr.save(string + '.png')
+        qr.save(string[:9] + '.png')
     else:
         qr.save(rand + '.png')
     return qr
@@ -32,10 +32,7 @@ def showQR():
 createQR(args.string)
 if('http' in args.string):
     print("Saved as: "+ rand + '.png')
-    subprocess.call(['xdg-open', rand + '.png'])
 else:
-    print("Saved as: "+ args.string + '.png')
-    subprocess.call(['xdg-open', args.string + '.png'])
+    print("Saved as: "+ args.string[:9] + '.png')
 if(args.show):
     showQR()
-
